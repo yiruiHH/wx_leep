@@ -3,6 +3,17 @@
 const app = getApp()
 
 Page({
+  clickMe: function () {
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    var y = date.getFullYear();
+    var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var h = date.getHours();
+    var min = date.getMinutes()<10 ? ('0'+date.getMinutes()) : date.getMinutes();
+    var s = date.getSeconds()<10 ? ('0'+date.getSeconds()) : date.getSeconds();
+    this.setData({ msg: ("打卡时间：" + y +"年" + m +"月"+ d+"日 " + h + ":" + min + ":" + s)})
+  },
   data: {
     motto: '爱你，顾薇雯！',
     userInfo: {},
