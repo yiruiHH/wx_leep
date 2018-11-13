@@ -12,7 +12,8 @@ Page({
     var h = date.getHours();
     var min = date.getMinutes()<10 ? ('0'+date.getMinutes()) : date.getMinutes();
     var s = date.getSeconds()<10 ? ('0'+date.getSeconds()) : date.getSeconds();
-    this.setData({ msg: ("打卡时间：" + y +"年" + m +"月"+ d+"日 " + h + ":" + min + ":" + s)})
+    this.setData({ msg: ("打卡时间：" + y +"年" + m +"月"+ d+"日 " + h + ":" + min + ":" + s)});
+    this.committime(date) 
   },
   data: {
     motto: '爱你，顾薇雯！',
@@ -60,6 +61,27 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  committime: function(date){
+    wx.cloud.init({
+      env: 'gwwsleep-14aa36'
+    })
+    const db = wx.cloud.database()
+    db.collection('sleep_time').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        description: "sleep_time",
+        time: new Date(date),
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  history:function(){
+    wx.navigateTo({
+      url: '../history/history',
     })
   }
 })

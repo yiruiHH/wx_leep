@@ -9,7 +9,9 @@
   </view>
   <view class='time'>{{msg}}</view>
   <button bindtap="clickMe" class='button' size='mini'>早睡打卡</button>
+  <view >{{time}}</view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <button bindtap="history" class='button' size='mini'>过往记录</button>
 </view>
